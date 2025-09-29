@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Invernaderos Cargados{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-seedling me-2"></i>
+                        Invernaderos Cargados
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if invernaderos and invernaderos.obtener_tamaño() > 0 %}
+                        <div class="row">
+                            {% for invernadero in invernaderos.iterar() %}
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card h-100 border-success">
+                                    <div class="card-header bg-light">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-warehouse me-2 text-success"></i>
+                                            {{ invernadero.nombre }}
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="border-end">
+                                                    <h6 class="text-muted">Hileras</h6>
+                                                    <h4 class="text-primary">{{ invernadero.numero_hileras }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-muted">Plantas/Hilera</h6>
+                                                <h4 class="text-info">{{ invernadero.plantas_por_hilera }}</h4>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row text-center">
+                                            <div class="col-4">
+                                                <small class="text-muted">Total Plantas</small>
+                                                <div class="fw-bold text-success">{{ invernadero.plantas.obtener_tamaño() }}</div>
+                                            </div>
+                                            <div class="col-4">
+                                                <small class="text-muted">Drones</small>
+                                                <div class="fw-bold text-warning">{{ invernadero.drones_asignados.obtener_tamaño() }}</div>
+                                            </div>
+                                            <div class="col-4">
+                                                <small class="text-muted">Planes</small>
+                                                <div class="fw-bold text-info">{{ invernadero.planes_riego.obtener_tamaño() }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-grid gap-2">
+                                            <a href="{{ url_for('detalle_invernadero', nombre=invernadero.nombre) }}" 
+                                               class="btn btn-outline-success btn-sm">
+                                                <i class="fas fa-eye me-1"></i>Ver Detalles
+                                            </a>
+                                            <a href="{{ url_for('simular_riego') }}?invernadero={{ invernadero.nombre }}" 
+                                               class="btn btn-success btn-sm">
+                                                <i class="fas fa-play me-1"></i>Simular Riego
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                            <h4>No hay invernaderos cargados</h4>
+                            <p class="text-muted">Primero debe cargar un archivo de configuración XML</p>
+                            <a href="{{ url_for('cargar_archivo') }}" class="btn btn-primary">
+                                <i class="fas fa-upload me-2"></i>Cargar Archivo XML
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

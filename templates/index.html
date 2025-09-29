@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Sistema de Riego Automatizado{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron bg-primary text-white p-5 rounded mb-4">
+            <div class="container text-center">
+                <h1 class="display-4">
+                    <i class="fas fa-seedling me-3"></i>
+                    Sistema de Riego Automatizado
+                </h1>
+                <p class="lead">GuateRiegos 2.0 - Optimización de riego y fertilización robótica</p>
+                <hr class="my-4" style="border-color: rgba(255,255,255,0.3);">
+                <p>Gestiona invernaderos, drones y planes de riego de manera eficiente</p>
+                {% if not estadisticas %}
+                <a class="btn btn-light btn-lg" href="{{ url_for('cargar_archivo') }}" role="button">
+                    <i class="fas fa-upload me-2"></i>Comenzar - Cargar Configuración
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if estadisticas %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="mb-4">
+            <i class="fas fa-chart-bar me-2"></i>
+            Configuración Actual
+        </h2>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card estadisticas-card h-100">
+            <div class="card-body text-center">
+                <div class="estadisticas-numero">{{ estadisticas.drones }}</div>
+                <div class="estadisticas-label">
+                    <i class="fas fa-drone me-1"></i>Drones
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card estadisticas-card h-100">
+            <div class="card-body text-center">
+                <div class="estadisticas-numero">{{ estadisticas.invernaderos }}</div>
+                <div class="estadisticas-label">
+                    <i class="fas fa-warehouse me-1"></i>Invernaderos
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card estadisticas-card h-100">
+            <div class="card-body text-center">
+                <div class="estadisticas-numero">{{ estadisticas.plantas }}</div>
+                <div class="estadisticas-label">
+                    <i class="fas fa-leaf me-1"></i>Plantas
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card estadisticas-card h-100">
+            <div class="card-body text-center">
+                <div class="estadisticas-numero">{{ estadisticas.planes }}</div>
+                <div class="estadisticas-label">
+                    <i class="fas fa-calendar-alt me-1"></i>Planes de Riego
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Funcionalidades Principales
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-upload text-primary me-2"></i>
+                        <strong>Cargar Configuración XML:</strong> Importa invernaderos, drones y planes de riego
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-play text-success me-2"></i>
+                        <strong>Simular Riego:</strong> Ejecuta planes de riego automatizados
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chart-line text-info me-2"></i>
+                        <strong>Reportes HTML:</strong> Genera reportes detallados del proceso
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-project-diagram text-warning me-2"></i>
+                        <strong>Gráficos TDA:</strong> Visualiza el estado de las estructuras de datos
+                    </li>
+                </ul>
+                
+                {% if estadisticas %}
+                <div class="mt-3">
+                    <a href="{{ url_for('simular_riego') }}" class="btn btn-success me-2">
+                        <i class="fas fa-play me-1"></i>Simular Riego
+                    </a>
+                    <a href="{{ url_for('listar_invernaderos') }}" class="btn btn-primary">
+                        <i class="fas fa-warehouse me-1"></i>Ver Invernaderos
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if not estadisticas %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">
+                <i class="fas fa-lightbulb me-2"></i>
+                ¡Comienza aquí!
+            </h4>
+            <p>Para utilizar el sistema, primero debes cargar un archivo XML con la configuración de tus invernaderos, drones y planes de riego.</p>
+            <hr>
+            <p class="mb-0">
+                <a href="{{ url_for('cargar_archivo') }}" class="btn btn-info">
+                    <i class="fas fa-upload me-1"></i>Cargar Archivo XML
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

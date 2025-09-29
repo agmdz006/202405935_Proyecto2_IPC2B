@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}{{ invernadero.nombre }} - Detalles{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+             Información General 
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-warehouse me-2"></i>
+                        {{ invernadero.nombre }}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <h6 class="text-muted">Hileras</h6>
+                            <h3 class="text-primary">{{ invernadero.numero_hileras }}</h3>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h6 class="text-muted">Plantas por Hilera</h6>
+                            <h3 class="text-info">{{ invernadero.plantas_por_hilera }}</h3>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h6 class="text-muted">Total Plantas</h6>
+                            <h3 class="text-success">{{ invernadero.plantas.obtener_tamaño() }}</h3>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h6 class="text-muted">Planes de Riego</h6>
+                            <h3 class="text-warning">{{ invernadero.planes_riego.obtener_tamaño() }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             Drones Asignados 
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-robot me-2"></i>
+                        Drones Asignados
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if invernadero.drones_asignados.obtener_tamaño() > 0 %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Hilera Asignada</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dron in invernadero.drones_asignados.iterar() %}
+                                    <tr>
+                                        <td>{{ dron.id }}</td>
+                                        <td>{{ dron.nombre }}</td>
+                                        <td>H{{ dron.hilera_asignada }}</td>
+                                        <td>
+                                            <span class="badge bg-success">Disponible</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No hay drones asignados a este invernadero.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+             Planes de Riego 
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        Planes de Riego
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if invernadero.planes_riego.obtener_tamaño() > 0 %}
+                        <div class="row">
+                            {% for plan in invernadero.planes_riego.iterar() %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card border-info">
+                                    <div class="card-header bg-light">
+                                        <h6 class="mb-0">{{ plan.nombre }}</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong>Secuencia:</strong><br>
+                                            <code>{{ plan.secuencia_riego }}</code>
+                                        </p>
+                                        <a href="{{ url_for('simular_riego') }}?invernadero={{ invernadero.nombre }}&plan={{ plan.nombre }}" 
+                                           class="btn btn-info btn-sm">
+                                            <i class="fas fa-play me-1"></i>Simular
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No hay planes de riego configurados.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+             Botones de Acción 
+            <div class="card">
+                <div class="card-body text-center">
+                    <a href="{{ url_for('ver_invernaderos') }}" class="btn btn-secondary me-2">
+                        <i class="fas fa-arrow-left me-1"></i>Volver a Invernaderos
+                    </a>
+                    <a href="{{ url_for('simular_riego') }}?invernadero={{ invernadero.nombre }}" class="btn btn-success">
+                        <i class="fas fa-play me-2"></i>Simular Riego
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

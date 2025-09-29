@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Cargar Archivo - Sistema de Riego{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-upload me-2"></i>
+                    Cargar Archivo de Configuración XML
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="archivo" class="form-label">
+                            <i class="fas fa-file-code me-1"></i>
+                            Seleccionar archivo XML
+                        </label>
+                        <input type="file" class="form-control" id="archivo" name="archivo" 
+                               accept=".xml" required>
+                        <div class="form-text">
+                            Solo se permiten archivos con extensión .xml (máximo 16MB)
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-arrow-left me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload me-1"></i>Cargar Archivo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Formato del Archivo XML
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>El archivo XML debe contener la siguiente estructura:</p>
+                
+                <div class="accordion" id="formatoAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingDrones">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDrones">
+                                <i class="fas fa-drone me-2"></i>Lista de Drones
+                            </button>
+                        </h2>
+                        <div id="collapseDrones" class="accordion-collapse collapse" data-bs-parent="#formatoAccordion">
+                            <div class="accordion-body">
+                                <pre><code>&lt;listaDrones&gt;
+  &lt;dron id="1" nombre="DR01"/&gt;
+  &lt;dron id="2" nombre="DR02"/&gt;
+&lt;/listaDrones&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingInvernaderos">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInvernaderos">
+                                <i class="fas fa-warehouse me-2"></i>Invernaderos
+                            </button>
+                        </h2>
+                        <div id="collapseInvernaderos" class="accordion-collapse collapse" data-bs-parent="#formatoAccordion">
+                            <div class="accordion-body">
+                                <pre><code>&lt;invernadero nombre="Invernadero Zacapa"&gt;
+  &lt;numeroHileras&gt;3&lt;/numeroHileras&gt;
+  &lt;plantasXhilera&gt;4&lt;/plantasXhilera&gt;
+  &lt;listaPlantas&gt;...&lt;/listaPlantas&gt;
+  &lt;asignacionDrones&gt;...&lt;/asignacionDrones&gt;
+  &lt;planesRiego&gt;...&lt;/planesRiego&gt;
+&lt;/invernadero&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPlantas">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlantas">
+                                <i class="fas fa-leaf me-2"></i>Plantas
+                            </button>
+                        </h2>
+                        <div id="collapsePlantas" class="accordion-collapse collapse" data-bs-parent="#formatoAccordion">
+                            <div class="accordion-body">
+                                <pre><code>&lt;planta hilera="1" posicion="1" 
+        litrosAgua="1" gramosFertilizante="100"&gt;
+  ciprés
+&lt;/planta&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPlanes">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlanes">
+                                <i class="fas fa-calendar-alt me-2"></i>Planes de Riego
+                            </button>
+                        </h2>
+                        <div id="collapsePlanes" class="accordion-collapse collapse" data-bs-parent="#formatoAccordion">
+                            <div class="accordion-body">
+                                <pre><code>&lt;plan nombre="Semana 1"&gt;
+  H1-P2, H2-P1, H2-P2, H3-P3, H1-P4
+&lt;/plan&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

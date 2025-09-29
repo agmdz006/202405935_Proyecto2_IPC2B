@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Ayuda - Sistema de Riego{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">
+            <i class="fas fa-question-circle me-2"></i>
+            Ayuda y Documentación
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-book me-2"></i>
+                    Guía de Usuario
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="guiaAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPaso1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaso1">
+                                <i class="fas fa-upload me-2"></i>Paso 1: Cargar Configuración
+                            </button>
+                        </h2>
+                        <div id="collapsePaso1" class="accordion-collapse collapse show" data-bs-parent="#guiaAccordion">
+                            <div class="accordion-body">
+                                <p>Para comenzar a usar el sistema, debe cargar un archivo XML con la configuración de sus invernaderos:</p>
+                                <ol>
+                                    <li>Vaya a la sección "Cargar XML" en el menú principal</li>
+                                    <li>Seleccione su archivo XML de configuración</li>
+                                    <li>Haga clic en "Cargar Archivo"</li>
+                                    <li>El sistema procesará automáticamente la información</li>
+                                </ol>
+                                <div class="alert alert-info">
+                                    <strong>Nota:</strong> El archivo XML debe seguir el formato especificado en la documentación del proyecto.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPaso2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaso2">
+                                <i class="fas fa-warehouse me-2"></i>Paso 2: Explorar Invernaderos
+                            </button>
+                        </h2>
+                        <div id="collapsePaso2" class="accordion-collapse collapse" data-bs-parent="#guiaAccordion">
+                            <div class="accordion-body">
+                                <p>Una vez cargada la configuración, puede explorar sus invernaderos:</p>
+                                <ul>
+                                    <li>Vea la lista completa de invernaderos configurados</li>
+                                    <li>Examine los detalles de cada invernadero (plantas, drones, planes)</li>
+                                    <li>Verifique la asignación de drones a hileras</li>
+                                    <li>Revise los planes de riego disponibles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPaso3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaso3">
+                                <i class="fas fa-play me-2"></i>Paso 3: Ejecutar Simulación
+                            </button>
+                        </h2>
+                        <div id="collapsePaso3" class="accordion-collapse collapse" data-bs-parent="#guiaAccordion">
+                            <div class="accordion-body">
+                                <p>Para simular el proceso de riego:</p>
+                                <ol>
+                                    <li>Vaya a la sección "Simular"</li>
+                                    <li>Seleccione un invernadero de la lista</li>
+                                    <li>Elija un plan de riego para ese invernadero</li>
+                                    <li>Haga clic en "Ejecutar Simulación"</li>
+                                    <li>Revise los resultados y estadísticas</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPaso4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaso4">
+                                <i class="fas fa-chart-bar me-2"></i>Paso 4: Generar Reportes
+                            </button>
+                        </h2>
+                        <div id="collapsePaso4" class="accordion-collapse collapse" data-bs-parent="#guiaAccordion">
+                            <div class="accordion-body">
+                                <p>Después de ejecutar una simulación, puede generar varios tipos de reportes:</p>
+                                <ul>
+                                    <li><strong>Reporte HTML:</strong> Documento detallado con estadísticas y tablas</li>
+                                    <li><strong>Gráfico TDA:</strong> Visualización del estado de las estructuras de datos</li>
+                                    <li><strong>Archivo XML de salida:</strong> Resultados en formato XML estándar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>
+                    Preguntas Frecuentes
+                </h5>
+            </div>
+            <div class="card-body">
+                <h6>¿Qué formato debe tener el archivo XML?</h6>
+                <p class="small">El archivo debe seguir la estructura especificada en el enunciado del proyecto, incluyendo drones, invernaderos, plantas y planes de riego.</p>
+                
+                <h6>¿Cómo funciona la simulación?</h6>
+                <p class="small">La simulación sigue las reglas establecidas: 1 segundo por movimiento, 1 segundo por riego, y solo un dron puede regar a la vez.</p>
+                
+                <h6>¿Puedo cambiar el tiempo en el gráfico TDA?</h6>
+                <p class="small">Sí, puede especificar cualquier tiempo entre 1 y el tiempo óptimo de la simulación para ver el estado en ese momento.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-life-ring me-2"></i>
+                    Soporte Técnico
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Si encuentra problemas o tiene dudas:</p>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope me-1"></i> Contacte a su auxiliar de laboratorio</li>
+                    <li><i class="fas fa-comments me-1"></i> Use los foros de UEDI</li>
+                    <li><i class="fas fa-book me-1"></i> Consulte la documentación del proyecto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
