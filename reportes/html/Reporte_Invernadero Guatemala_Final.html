@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte - Invernadero Guatemala - Final</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #2c5530;
+            border-bottom: 3px solid #4a7c59;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h3 {
+            color: #2c5530;
+            border-left: 4px solid #7fb069;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        .estadisticas {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .estadistica {
+            text-align: center;
+        }
+        .estadistica .numero {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c5530;
+        }
+        .estadistica .label {
+            color: #666;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #2c5530;
+            color: white;
+        }
+        .accion-regar {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+        }
+        .accion-mover {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .accion-esperar {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+        .accion-fin {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .drones-asignados {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Reporte de Riego Automatizado</h1>
+            <h2>Invernadero Guatemala</h2>
+            <h3>Plan: Final</h3>
+            <p>Generado el: 28/09/2025 22:07:40</p>
+        </div>
+        
+        <div class="section">
+            <h3>Estadísticas del Proceso</h3>
+            <div class="estadisticas">
+                <div class="estadistica">
+                    <div class="numero">21</div>
+                    <div class="label">Segundos</div>
+                </div>
+                <div class="estadistica">
+                    <div class="numero">64</div>
+                    <div class="label">Litros de Agua</div>
+                </div>
+                <div class="estadistica">
+                    <div class="numero">2025</div>
+                    <div class="label">Gramos de Fertilizante</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Asignación de Drones</h3>
+            <div class="drones-asignados">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hilera</th>
+                            <th>Dron</th>
+                            <th>Agua Utilizada (L)</th>
+                            <th>Fertilizante Utilizado (g)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td>H1</td>
+                            <td>DR02</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+            
+                        <tr>
+                            <td>H2</td>
+                            <td>DR04</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Proceso de Riego y Aplicación de Fertilizante</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tiempo (s)</th>
+        <th>DR02</th><th>DR04</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr><td>1</td><td class="accion-mover">Adelante(H1P1)</td><td class="accion-mover">Adelante(H2P1)</td></tr><tr><td>2</td><td class="accion-regar">Regar</td><td class="accion-esperar">Esperar</td></tr><tr><td>3</td><td class="accion-mover">Adelante(H1P2)</td><td class="accion-regar">Regar</td></tr><tr><td>4</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P2)</td></tr><tr><td>5</td><td class="accion-mover">Adelante(H1P3)</td><td class="accion-regar">Regar</td></tr><tr><td>6</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P3)</td></tr><tr><td>7</td><td class="accion-mover">Adelante(H1P4)</td><td class="accion-regar">Regar</td></tr><tr><td>8</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P4)</td></tr><tr><td>9</td><td class="accion-mover">Adelante(H1P5)</td><td class="accion-regar">Regar</td></tr><tr><td>10</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P5)</td></tr><tr><td>11</td><td class="accion-mover">Adelante(H1P6)</td><td class="accion-regar">Regar</td></tr><tr><td>12</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P6)</td></tr><tr><td>13</td><td class="accion-mover">Adelante(H1P7)</td><td class="accion-regar">Regar</td></tr><tr><td>14</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P7)</td></tr><tr><td>15</td><td class="accion-mover">Adelante(H1P8)</td><td class="accion-regar">Regar</td></tr><tr><td>16</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P8)</td></tr><tr><td>17</td><td class="accion-mover">Adelante(H1P9)</td><td class="accion-regar">Regar</td></tr><tr><td>18</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P9)</td></tr><tr><td>19</td><td class="accion-mover">Adelante(H1P10)</td><td class="accion-regar">Regar</td></tr><tr><td>20</td><td class="accion-regar">Regar</td><td class="accion-mover">Adelante(H2P10)</td></tr><tr><td>21</td><td class="accion-esperar">Fin</td><td class="accion-regar">Regar</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Sistema de Riego Automatizado - IPC2 Proyecto 2</p>
+            <p>Universidad de San Carlos de Guatemala</p>
+        </div>
+    </div>
+</body>
+</html>
+        
